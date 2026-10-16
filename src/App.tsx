@@ -51,7 +51,10 @@ function usePageEffects() {
     if (hash) {
       const el = document.querySelector(hash)
       if (el) {
-        requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? ('auto' as const)
+          : ('smooth' as const)
+        requestAnimationFrame(() => el.scrollIntoView({ behavior, block: 'start' }))
       }
     } else {
       window.scrollTo(0, 0)
