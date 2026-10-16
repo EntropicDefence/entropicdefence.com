@@ -29,9 +29,11 @@ const TIER_KEYS: PageTierKey[] = ['small', 'medium', 'large']
 const consultIcons = [MessagesSquare, Clock, Wallet]
 
 export default function CheckoutExtern() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [tier, setTier] = useState<PageTierKey>('small')
   const [period, setPeriod] = useState<BillingPeriod>('year')
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const tierInfo = t.checkoutExtern.tiers[tier]
 
@@ -65,7 +67,7 @@ export default function CheckoutExtern() {
               På smala skärmar bryts perioden ner på egen rad — fortfarande högerställd. */}
           <div className="-mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
             <Link
-              to="/checkout"
+              to={to('/checkout')}
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-signal"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />

@@ -3,7 +3,19 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/", "destination": "/sv/", "permanent": true },
+    { "source": "/checkout", "destination": "/sv/checkout", "permanent": true },
+    { "source": "/checkout/extern", "destination": "/sv/checkout/extern", "permanent": true },
+    { "source": "/checkout/intern", "destination": "/sv/checkout/intern", "permanent": true },
+    { "source": "/checkout/ledning", "destination": "/sv/checkout/ledning", "permanent": true },
+    { "source": "/success", "destination": "/sv/success", "permanent": true },
+    { "source": "/papers", "destination": "/sv/papers", "permanent": true },
+    { "source": "/legal", "destination": "/sv/legal", "permanent": true },
+    { "source": "/support", "destination": "/sv/support", "permanent": true },
+    { "source": "/advisories", "destination": "/sv/advisories", "permanent": true },
+    { "source": "/disclosures", "destination": "/sv/disclosures", "permanent": true },
+    { "source": "/status", "destination": "/sv/status", "permanent": true }
   ]
 }

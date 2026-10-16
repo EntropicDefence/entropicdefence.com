@@ -53,3 +53,25 @@ export function languageFromNavigator(value: string | undefined): LanguageCode {
 export function isLanguageCode(value: string | null | undefined): value is LanguageCode {
   return LANGUAGES.some((lang) => lang.code === value)
 }
+
+/**
+ * Plockar ut språkkoden ur första URL-segmentet: `/sv/papers` → `sv`,
+ * `/papers` eller `/` → `undefined`.
+ */
+export function languageFromPath(pathname: string): LanguageCode | undefined {
+  const segment = pathname.split('/')[1]
+  return isLanguageCode(segment) ? segment : undefined
+}
+
+/**
+ * Tar bort språkprefixet ur en sökväg: `/sv/papers` → `/papers`, `/sv` → `/`,
+ * `/papers` → `/papers`. Används för att slå upp rätt meta/rutt oavsett språk.
+ */
+export function stripLanguagePrefix(pathname: string): string {
+  const segments = pathname.split('/')
+  if (segments[1] && isLanguageCode(segments[1])) {
+    segments.splice(1, 1)
+    return segments.join('/') || '/'
+  }
+  return pathname || '/'
+}

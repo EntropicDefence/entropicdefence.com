@@ -16,7 +16,9 @@ import QuoteForm, { type QuoteOption } from '@/components/QuoteForm'
 import { useI18n } from '@/i18n'
 
 export default function CheckoutLedning() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const options: QuoteOption[] = [
     { value: 'ledning-strategi', label: t.checkoutLedning.form.options.strategy },
@@ -48,7 +50,7 @@ export default function CheckoutLedning() {
       <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
         <Reveal>
           <Link
-            to="/checkout"
+            to={to('/checkout')}
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-signal"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />

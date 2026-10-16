@@ -25,7 +25,9 @@ const levelIcons: Record<InternalLevelId, LucideIcon> = {
 const efficiencyIcons = [Zap, ShieldCheck, EyeOff]
 
 export default function CheckoutIntern() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const formatPrice = (n: number) => `${n.toLocaleString('sv-SE')} ${t.common.currency}`
 
@@ -52,7 +54,7 @@ export default function CheckoutIntern() {
       <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
         <Reveal>
           <Link
-            to="/checkout"
+            to={to('/checkout')}
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-signal"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />

@@ -1,4 +1,13 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { sv, type Dictionary } from './sv'
 import { en } from './en'
 import { fi } from './fi'
@@ -16,16 +25,23 @@ import {
   DEFAULT_LANGUAGE,
   isLanguageCode,
   languageFromNavigator,
+  languageFromPath,
+  stripLanguagePrefix,
   LANGUAGES,
   type LanguageCode,
 } from './languages'
 
-export { LANGUAGES, DEFAULT_LANGUAGE, isLanguageCode, languageFromNavigator }
+export {
+  LANGUAGES,
+  DEFAULT_LANGUAGE,
+  isLanguageCode,
+  languageFromNavigator,
+  languageFromPath,
+  stripLanguagePrefix,
+}
 export type { LanguageCode, Dictionary }
 
-const STORAGE_KEY = 'ed-lang'
-
-const translations: Record<LanguageCode, Dictionary> = {
+export const translations: Record<LanguageCode, Dictionary> = {
   sv,
   en,
   fi,
@@ -49,29 +65,40 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null)
 
-function detectInitialLanguage(): LanguageCode {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (isLanguageCode(saved)) return saved
-  } catch {
-    // localStorage kan vara blockerad (t.ex. privat läge) — fall tillbaka till navigator
-  }
-  return languageFromNavigator(typeof navigator !== 'undefined' ? navigator.language : undefined)
-}
-
+/**
+ * Språkstyrd via URL: `/sv/papers` → svenska, `/fi` → finska.
+ * URL är källa till sanning (indexerbart + delbart). Ingen localStorage.
+ */
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<LanguageCode>(detectInitialLanguage)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const urlLang = languageFromPath(location.pathname)
+
+  const [lang, setLangState] = useState<LanguageCode>(urlLang ?? DEFAULT_LANGUAGE)
+
+  // Håll tillståndet synkat när URL:en ändras (bakåt/framåt, direktlänk).
+  useEffect(() => {
+    if (urlLang && urlLang !== lang) setLangState(urlLang)
+  }, [urlLang, lang])
 
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, lang)
-    } catch {
-      // ignorera — språket gäller fortfarande för sessionen
-    }
     document.documentElement.lang = lang
   }, [lang])
 
-  const value = useMemo<I18nContextValue>(() => ({ lang, setLang, t: translations[lang] }), [lang])
+  const setLang = useCallback(
+    (next: LanguageCode) => {
+      setLangState(next)
+      if (next === urlLang) return
+      const rest = stripLanguagePrefix(location.pathname)
+      navigate(`/${next}${rest === '/' ? '' : rest}`)
+    },
+    [location.pathname, navigate, urlLang],
+  )
+
+  const value = useMemo<I18nContextValue>(() => ({ lang, setLang, t: translations[lang] }), [
+    lang,
+    setLang,
+  ])
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }

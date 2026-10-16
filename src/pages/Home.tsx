@@ -23,33 +23,35 @@ function Stat({ value, label }: { value: string; label: string }) {
 }
 
 export default function Home() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [hoveredTrust, setHoveredTrust] = useState<number | null>(null)
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const services: { icon: LucideIcon; title: string; text: string; to?: string }[] = [
     {
       icon: Radar,
       title: t.home.services.items[0].title,
       text: t.home.services.items[0].text,
-      to: '/checkout/extern',
+      to: to('/checkout/extern'),
     },
     {
       icon: ShieldCheck,
       title: t.home.services.items[1].title,
       text: t.home.services.items[1].text,
-      to: '/checkout/intern',
+      to: to('/checkout/intern'),
     },
     {
       icon: Network,
       title: t.home.services.items[2].title,
       text: t.home.services.items[2].text,
-      to: '/checkout/ledning',
+      to: to('/checkout/ledning'),
     },
     {
       icon: FileText,
       title: t.home.services.items[3].title,
       text: t.home.services.items[3].text,
-      to: '/disclosures#ai-tool',
+      to: to('/disclosures#ai-tool'),
     },
   ]
 
@@ -62,10 +64,10 @@ export default function Home() {
   // Trust-stripen: klickbara poster pekar på fördjupningen (samma ordning som t.home.trustStrip)
   const trustLinks: (string | null)[] = [
     null,
-    '/disclosures#government',
-    '/disclosures#military',
-    '/disclosures#kritisk-infrastruktur',
-    '/legal#tystnadsplikt',
+    to('/disclosures#government'),
+    to('/disclosures#military'),
+    to('/disclosures#kritisk-infrastruktur'),
+    to('/legal#tystnadsplikt'),
   ]
 
   return (
@@ -100,7 +102,7 @@ export default function Home() {
                 {t.home.hero.ctaPrimary}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
-              <Button to="/checkout" variant="ghost">
+              <Button to={to('/checkout')} variant="ghost">
                 {t.home.hero.ctaSecondary}
               </Button>
             </div>
@@ -323,7 +325,7 @@ export default function Home() {
                 {t.home.contact.ctaMail}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
-              <Button to="/checkout" variant="ghost">
+              <Button to={to('/checkout')} variant="ghost">
                 {t.home.contact.ctaSupport}
               </Button>
             </div>
@@ -339,7 +341,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-5 py-10 sm:flex-row sm:items-center lg:px-8">
           <p className="text-sm text-fog">{t.home.papersCta.text}</p>
           <Link
-            to="/papers"
+            to={to('/papers')}
             className="inline-flex items-center gap-2 font-display text-sm font-semibold text-signal transition-colors hover:text-pulse"
           >
             {t.home.papersCta.cta}

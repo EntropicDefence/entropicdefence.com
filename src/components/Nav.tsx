@@ -80,23 +80,25 @@ function LanguagePicker({ onSelect }: { onSelect?: () => void }) {
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const { pathname, hash } = useLocation()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const links = [
-    { to: '/#tjanster', label: t.nav.services },
-    { to: '/disclosures', label: t.nav.disclosures },
-    { to: '/papers', label: t.nav.papers },
-    { to: '/support', label: t.nav.support },
+    { to: to('/#tjanster'), label: t.nav.services },
+    { to: to('/disclosures'), label: t.nav.disclosures },
+    { to: to('/papers'), label: t.nav.papers },
+    { to: to('/support'), label: t.nav.support },
   ]
 
-  const scrollToTarget = (to: string) => {
-    if (to.startsWith('/#')) {
-      const targetHash = to.slice(1)
-      if (pathname === '/' && hash === targetHash) {
-        document.querySelector(targetHash)?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToTarget = (target: string) => {
+    if (target.includes('#')) {
+      const [targetPath, targetHash] = target.split('#')
+      if (pathname === targetPath && hash === `#${targetHash}`) {
+        document.querySelector(`#${targetHash}`)?.scrollIntoView({ behavior: 'smooth' })
       }
-    } else if (pathname === to) {
+    } else if (pathname === target) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -105,11 +107,11 @@ export default function Nav() {
     <header className="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-void/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link
-          to="/"
+          to={home}
           className="flex items-center gap-3"
           aria-label={t.nav.homeAria}
           onClick={() => {
-            if (pathname === '/' && !hash) window.scrollTo({ top: 0, behavior: 'smooth' })
+            if (pathname === home && !hash) window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
           <img src="/logo.webp" alt="" className="h-8 w-8" />
@@ -134,10 +136,10 @@ export default function Nav() {
         <div className="hidden items-center gap-3 md:flex">
           <LanguagePicker />
           <Button
-            to="/#contact"
+            to={to('/#contact')}
             variant="small"
             onClick={() => {
-              if (pathname === '/' && hash === '#contact') {
+              if (pathname === home && hash === '#contact') {
                 document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
               }
             }}
@@ -175,11 +177,11 @@ export default function Nav() {
             ))}
             <LanguagePicker onSelect={() => setOpen(false)} />
             <Button
-              to="/#contact"
+              to={to('/#contact')}
               className="mt-2 w-full"
               onClick={() => {
                 setOpen(false)
-                if (pathname === '/' && hash === '#contact') {
+                if (pathname === home && hash === '#contact') {
                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
               }}

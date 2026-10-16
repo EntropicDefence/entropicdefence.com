@@ -5,7 +5,9 @@ import Reveal from '@/components/Reveal'
 import { useI18n } from '@/i18n'
 
 export default function Success() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   return (
     <>
@@ -30,8 +32,8 @@ export default function Success() {
               {t.success.panelText}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Button to="/">{t.success.ctaHome}</Button>
-              <Button to="/papers" variant="ghost">
+              <Button to={to('/')}>{t.success.ctaHome}</Button>
+              <Button to={to('/papers')} variant="ghost">
                 {t.success.ctaPapers}
               </Button>
             </div>

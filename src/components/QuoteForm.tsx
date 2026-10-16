@@ -15,7 +15,7 @@ type Props = {
 
 export default function QuoteForm({ options, defaultInterest = '', submitLabel }: Props) {
   const navigate = useNavigate()
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(false)
 
@@ -39,7 +39,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
         }),
       })
       if (!res.ok) throw new Error('send failed')
-      navigate('/success')
+      navigate(`/${lang}/success`)
     } catch {
       setError(true)
       setSubmitting(false)
@@ -63,7 +63,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
             required
             type="text"
             name="company"
-            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal focus:outline-none"
+            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal"
             placeholder={t.forms.companyPlaceholder}
           />
         </label>
@@ -72,7 +72,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
           <input
             type="text"
             name="orgnr"
-            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal focus:outline-none"
+            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal"
             placeholder={t.forms.orgNumberPlaceholder}
           />
         </label>
@@ -84,7 +84,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
             required
             type="text"
             name="name"
-            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal focus:outline-none"
+            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal"
             placeholder={t.forms.namePlaceholder}
           />
         </label>
@@ -94,7 +94,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
             required
             type="email"
             name="email"
-            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal focus:outline-none"
+            className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal"
             placeholder={t.forms.emailPlaceholder}
           />
         </label>
@@ -105,7 +105,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
           required
           name="plan"
           defaultValue={defaultInterest}
-          className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost focus:border-signal focus:outline-none"
+          className="mt-2 w-full rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost focus:border-signal"
         >
           <option value="" disabled>
             {t.forms.choosePackage}
@@ -123,7 +123,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
         <textarea
           name="message"
           rows={4}
-          className="mt-2 w-full resize-none rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal focus:outline-none"
+          className="mt-2 w-full resize-none rounded-lg border border-line bg-void/70 px-4 py-3 text-sm text-frost placeholder:text-fog/50 focus:border-signal"
           placeholder={t.forms.describePlaceholder}
         />
       </label>
@@ -136,7 +136,7 @@ export default function QuoteForm({ options, defaultInterest = '', submitLabel }
       </Button>
       <p className="text-center text-xs leading-relaxed text-fog">
         {t.forms.consentBefore}{' '}
-        <a href="/legal" className="text-signal hover:underline">
+        <a href={`/${lang}/legal`} className="text-signal hover:underline">
           {t.forms.consentLink}
         </a>
         {t.forms.consentAfter}

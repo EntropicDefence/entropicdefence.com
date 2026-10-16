@@ -26,7 +26,9 @@ type Category = {
 }
 
 export default function Checkout() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   const formatPrice = (n: number) => `${n.toLocaleString('sv-SE')} ${t.common.currency}`
 
@@ -38,7 +40,7 @@ export default function Checkout() {
       period: t.checkout.categories[0].period,
       description: t.checkout.categories[0].description,
       features: t.checkout.categories[0].features,
-      to: '/checkout/extern',
+      to: to('/checkout/extern'),
       featured: true,
     },
     {
@@ -48,7 +50,7 @@ export default function Checkout() {
       period: t.checkout.categories[1].period,
       description: t.checkout.categories[1].description,
       features: t.checkout.categories[1].features,
-      to: '/checkout/intern',
+      to: to('/checkout/intern'),
     },
     {
       name: t.checkout.categories[2].name,
@@ -57,7 +59,7 @@ export default function Checkout() {
       period: t.checkout.categories[2].period,
       description: t.checkout.categories[2].description,
       features: t.checkout.categories[2].features,
-      to: '/checkout/ledning',
+      to: to('/checkout/ledning'),
       soon: true,
     },
   ]

@@ -2,13 +2,14 @@ import { Link, useLocation } from 'react-router-dom'
 import { useI18n } from '@/i18n'
 
 export default function FloatingCta() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const { pathname, hash } = useLocation()
+  const home = `/${lang}`
   return (
     <Link
-      to="/#contact"
+      to={`${home}#contact`}
       onClick={() => {
-        if (pathname === '/' && hash === '#contact') {
+        if (pathname === home && hash === '#contact') {
           document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
         }
       }}

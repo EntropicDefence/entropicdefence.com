@@ -17,11 +17,12 @@ import Advisories from '@/pages/Advisories'
 import Disclosures from '@/pages/Disclosures'
 import Status from '@/pages/Status'
 import NotFound from '@/pages/NotFound'
-import { useI18n } from '@/i18n'
+import { stripLanguagePrefix, useI18n } from '@/i18n'
 
 function usePageEffects() {
   const { pathname, hash } = useLocation()
   const { t, lang } = useI18n()
+  const pagePath = stripLanguagePrefix(pathname)
 
   const meta: Record<string, { title: string; description: string }> = {
     '/': t.meta.home,
@@ -40,11 +41,11 @@ function usePageEffects() {
   }
 
   useEffect(() => {
-    const m = meta[pathname] ?? meta['*']
+    const m = meta[pagePath] ?? meta['*']
     document.title = m.title
     const tag = document.querySelector('meta[name="description"]')
     if (tag) tag.setAttribute('content', m.description)
-  }, [pathname, lang])
+  }, [pagePath, lang])
 
   useEffect(() => {
     if (hash) {
@@ -73,19 +74,21 @@ export default function App() {
 
       <main className="relative z-10">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/checkout/extern" element={<CheckoutExtern />} />
-          <Route path="/checkout/intern" element={<CheckoutIntern />} />
-          <Route path="/checkout/ledning" element={<CheckoutLedning />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="/papers" element={<Papers />} />
-          <Route path="/legal" element={<Legal />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/advisories" element={<Advisories />} />
-          <Route path="/disclosures" element={<Disclosures />} />
-          <Route path="/status" element={<Status />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path=":lang?">
+            <Route index element={<Home />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="checkout/extern" element={<CheckoutExtern />} />
+            <Route path="checkout/intern" element={<CheckoutIntern />} />
+            <Route path="checkout/ledning" element={<CheckoutLedning />} />
+            <Route path="success" element={<Success />} />
+            <Route path="papers" element={<Papers />} />
+            <Route path="legal" element={<Legal />} />
+            <Route path="support" element={<Support />} />
+            <Route path="advisories" element={<Advisories />} />
+            <Route path="disclosures" element={<Disclosures />} />
+            <Route path="status" element={<Status />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </main>
 

@@ -3,7 +3,9 @@ import Button from '@/components/Button'
 import { useI18n } from '@/i18n'
 
 export default function NotFound() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
   return (
     <section className="flex min-h-svh items-center justify-center px-5 py-24">
@@ -21,11 +23,11 @@ export default function NotFound() {
           {t.notFound.description}
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <Button to="/">
+          <Button to={to('/')}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t.notFound.ctaHome}
           </Button>
-          <Button to="/support" variant="ghost">
+          <Button to={to('/support')} variant="ghost">
             {t.notFound.ctaSupport}
           </Button>
         </div>

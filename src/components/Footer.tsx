@@ -2,16 +2,18 @@ import { Link, useLocation } from 'react-router-dom'
 import { useI18n } from '@/i18n'
 
 export default function Footer() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const { pathname, hash } = useLocation()
+  const home = `/${lang}`
+  const to = (p: string) => (p === '/' ? home : `${home}${p}`)
 
-  const scrollToTarget = (to: string) => {
-    if (to.startsWith('/#')) {
-      const targetHash = to.slice(1)
-      if (pathname === '/' && hash === targetHash) {
-        document.querySelector(targetHash)?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToTarget = (target: string) => {
+    if (target.includes('#')) {
+      const [targetPath, targetHash] = target.split('#')
+      if (pathname === targetPath && hash === `#${targetHash}`) {
+        document.querySelector(`#${targetHash}`)?.scrollIntoView({ behavior: 'smooth' })
       }
-    } else if (pathname === to) {
+    } else if (pathname === target) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -20,18 +22,18 @@ export default function Footer() {
     {
       title: t.footer.columnNavigation,
       links: [
-        { to: '/#tjanster', label: t.footer.linkServices },
-        { to: '/advisories', label: t.footer.linkReviews },
-        { to: '/papers', label: t.footer.linkPapers },
-        { to: '/status', label: t.footer.linkStatus },
+        { to: to('/#tjanster'), label: t.footer.linkServices },
+        { to: to('/advisories'), label: t.footer.linkReviews },
+        { to: to('/papers'), label: t.footer.linkPapers },
+        { to: to('/status'), label: t.footer.linkStatus },
       ],
     },
     {
       title: t.footer.columnCompany,
       links: [
-        { to: '/checkout', label: t.footer.linkPackages },
-        { to: '/support', label: t.footer.linkSupport },
-        { to: '/legal', label: t.footer.linkLegal },
+        { to: to('/checkout'), label: t.footer.linkPackages },
+        { to: to('/support'), label: t.footer.linkSupport },
+        { to: to('/legal'), label: t.footer.linkLegal },
       ],
     },
   ]
@@ -41,10 +43,10 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Link
-            to="/"
+            to={home}
             className="flex items-center gap-3"
             onClick={() => {
-              if (pathname === '/' && !hash) window.scrollTo({ top: 0, behavior: 'smooth' })
+              if (pathname === home && !hash) window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
             <img src="/logo.webp" alt="" className="h-8 w-8" />

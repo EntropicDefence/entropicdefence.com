@@ -6,27 +6,31 @@ type Props = {
   delay?: number
 }
 
+/**
+ * Scroll-avslöjande wrapper. Börjar synlig (SSR + no-JS + reduced-motion
+ * ser alltid innehållet) och döljer endast element som inte är i vy när
+ * JavaScript väl kör.
+ */
 export default function Reveal({ children, className = '', delay = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
     const el = ref.current
-    if (!el || visible) return
+    if (!el) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || !('IntersectionObserver' in window)) return
+
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          obs.disconnect()
-        }
+        setVisible(entry.isIntersecting)
+        if (entry.isIntersecting) obs.disconnect()
       },
       { threshold: 0.12 },
     )
     obs.observe(el)
     return () => obs.disconnect()
-  }, [visible])
+  }, [])
 
   return (
     <div
