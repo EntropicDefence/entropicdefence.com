@@ -49,7 +49,7 @@ function hreflangLinks(lang, route) {
   return `${links}\n    ${xDefault}`
 }
 
-function buildPage(template, { url, lang, title, description, appHtml }) {
+function buildPage(template, { url, lang, title, description, appHtml, locale, jsonLd }) {
   let html = template
   html = html.replace('<html lang="sv">', `<html lang="${lang}">`)
   html = html.replace(
@@ -73,10 +73,27 @@ function buildPage(template, { url, lang, title, description, appHtml }) {
     `<meta property="og:url" content="${SITE}${url}" />`,
   )
   html = html.replace(
+    /<meta\s+property="og:locale"\s+content="[^"]*"\s*\/>/s,
+    `<meta property="og:locale" content="${locale}" />`,
+  )
+  html = html.replace(
+    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/s,
+    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+  )
+  html = html.replace(
+    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s,
+    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+  )
+  html = html.replace(
     '<meta name="theme-color" content="#04060b" />',
     `<meta name="theme-color" content="#04060b" />
     <link rel="canonical" href="${SITE}${url}" />
     ${hreflangLinks(lang, url === `/${lang}` ? '' : url.slice(lang.length + 1))}`,
+  )
+  html = html.replace(
+    '</head>',
+    `  <script type="application/ld+json">${jsonLd}</script>
+  </head>`,
   )
   html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
   return html
@@ -84,7 +101,7 @@ function buildPage(template, { url, lang, title, description, appHtml }) {
 
 async function main() {
   const server = await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)
-  const { render, getPageMeta } = server
+  const { render, getPageMeta, getStructuredData, OG_LOCALES } = server
   const template = await readFile(path.join(distDir, 'index.html'), 'utf8')
 
   const sitemap = []
@@ -95,7 +112,15 @@ async function main() {
       const url = pageUrl(lang, route)
       const { title, description, lang: resolvedLang } = getPageMeta(url)
       const { html: appHtml } = render(url)
-      const page = buildPage(template, { url, lang: resolvedLang, title, description, appHtml })
+      const page = buildPage(template, {
+        url,
+        lang: resolvedLang,
+        title,
+        description,
+        locale: OG_LOCALES[resolvedLang] ?? 'en_US',
+        jsonLd: getStructuredData(url),
+        appHtml,
+      })
 
       let outPath
       if (route === '') {
@@ -126,6 +151,8 @@ async function main() {
     lang: 'en',
     title,
     description,
+    locale: 'en_US',
+    jsonLd: getStructuredData('/en/404'),
     appHtml: notFoundHtml,
   })
   await writeFile(path.join(distDir, '404.html'), page404)

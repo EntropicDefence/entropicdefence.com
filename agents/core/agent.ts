@@ -10,6 +10,7 @@
  */
 import type { ImapFlow } from 'imapflow'
 
+import { buildNotice, notifyAssistant } from './assistant.js'
 import {
   MAX_REFUSAL_RETRIES,
   MAX_REPLIES_PER_SENDER_PER_DAY,
@@ -23,7 +24,7 @@ import type { ChatMessage } from './llm.js'
 import { fetchMessages, isNoReplyAddress, markSeen, sendReply } from './mail.js'
 import { buildSystemPrompt } from './prompt.js'
 import { createPurchase, type PurchaseOutcome } from './purchase.js'
-import { markAsSeen, ownerEmail, processBacklog } from './env.js'
+import { markAsSeen, ownerEmail, processBacklog, envValue } from './env.js'
 import {
   MAX_REVIEW_ROUNDS,
   describeIssues,
@@ -176,6 +177,7 @@ function ownerAddress(): string {
  * Utan `customerReply`: eskalering — kunden far inget svar.
  * Med `customerReply`: kopia — kunden fick ett autosvar och agaren tar over.
  * `extra` hängs på i slutet (t.ex. fakturautkastet med dashboardlänk).
+ * `summary` och `kind` styr samma arende till mobilen via Telegram-bryggan.
  */
 async function notifyOwner(
   client: ImapFlow,
@@ -186,6 +188,8 @@ async function notifyOwner(
   dryRun: boolean,
   customerReply?: string,
   extra?: string,
+  summary?: string,
+  kind: 'escalation' | 'copy' | 'notify' = 'escalation',
 ): Promise<boolean> {
   const owner = ownerAddress()
   if (!owner) {
@@ -236,11 +240,18 @@ async function notifyOwner(
 
   try {
     await sendReply(client, credentials, reply)
-    return true
   } catch (error) {
     console.error('[agent] kunde inte meddela agaren:', error)
     return false
   }
+
+  // Samma arende till mobilen: en kort notis via Telegram-bryggan. Best-effort —
+  // svarar bryggan inte sa ar agaren anda meddelad per mejl.
+  const sentToPhone = await notifyAssistant(buildNotice(kind, persona, mail, reason, summary))
+  if (!sentToPhone && envValue('ASSISTANT_URL')) {
+    console.warn('[agent] Telegram-bryggan svarade inte — agaren har fatt mejlet.')
+  }
+  return true
 }
 
 /**
@@ -433,6 +444,8 @@ export async function runMail(
       decision.escalateReason,
       false,
       decision.holdReply || undefined,
+      undefined,
+      decision.summary,
     )
     return finish(
       { action: 'escalated', abuseCount: nextCount, reason: decision.escalateReason, decision },
@@ -451,6 +464,9 @@ export async function runMail(
       mail,
       `Avsändaren nådde stopptroskeln (${nextCount} poäng) — inget svar skickas.`,
       false,
+      undefined,
+      undefined,
+      decision.summary,
     )
     return finish(
       { action: 'silenced', abuseCount: nextCount, reason: 'nadd stopptroskeln — inget svar skickas', decision },
@@ -487,6 +503,8 @@ export async function runMail(
         false,
         decision.reply,
         purchase?.ownerNote,
+        decision.summary,
+        'notify',
       )
       if (!notified) console.warn('[agent] agaren kunde inte meddelas om offertarendet.')
     }

@@ -53,3 +53,137 @@ export function getPageMeta(url: string): { title: string; description: string; 
   const meta = translations[lang].meta[key]
   return { title: meta.title, description: meta.description, lang }
 }
+
+const SITE_URL = 'https://entropicdefence.com'
+
+/** og:locale per språk — prerender skriver rätt värde i varje statisk sida. */
+export const OG_LOCALES: Record<LanguageCode, string> = {
+  sv: 'sv_SE',
+  en: 'en_US',
+  fi: 'fi_FI',
+  da: 'da_DK',
+  no: 'nb_NO',
+  lt: 'lt_LT',
+  et: 'et_EE',
+  lv: 'lv_LV',
+  pl: 'pl_PL',
+  sl: 'sl_SI',
+  fr: 'fr_FR',
+  es: 'es_ES',
+  th: 'th_TH',
+}
+
+/** Länder sajten riktar sig till. Används i `areaServed`. */
+const AREA_SERVED = [
+  'Sweden',
+  'Finland',
+  'Denmark',
+  'Norway',
+  'Estonia',
+  'Lithuania',
+  'Latvia',
+  'Poland',
+  'Slovenia',
+  'France',
+  'Spain',
+  'Thailand',
+]
+
+/**
+ * Sociala profiler för `sameAs`. Lämnas tom tills kontona finns — påhittade
+ * länkar i strukturerad data är sämre än inga länkar.
+ */
+const SOCIAL_PROFILES: string[] = []
+
+/**
+ * JSON-LD (schema.org) för en URL. Skrivs in i `<head>` av prerender-skriptet
+ * så att Google, Bing och AI-svar (ChatGPT, Perplexity) får strukturerad data
+ * utan att köra JavaScript.
+ *
+ * Organization + WebSite en gång per sida, WebPage + BreadcrumbList per sida,
+ * och FAQPage på /support (frågorna finns redan översatta i lexikonet).
+ */
+export function getStructuredData(url: string): string {
+  const lang = languageFromPath(url) ?? DEFAULT_LANGUAGE
+  const pagePath = stripLanguagePrefix(url)
+  const key = META_KEYS[pagePath] ?? 'notFound'
+  const dict = translations[lang]
+  const meta = dict.meta[key]
+  const pageUrl = `${SITE_URL}${url}`
+  const orgId = `${SITE_URL}/#organization`
+  const siteId = `${SITE_URL}/#website`
+
+  const graph: Record<string, unknown>[] = [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: 'Entropic Defence',
+      url: `${SITE_URL}/${lang}`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/favicon-512x512.png`,
+        width: 512,
+        height: 512,
+      },
+      image: `${SITE_URL}/og-image.png`,
+      email: 'contact@entropicdefence.com',
+      description: dict.footer.tagline,
+      areaServed: AREA_SERVED.map((name) => ({ '@type': 'Country', name })),
+      knowsLanguage: Object.keys(OG_LOCALES),
+      ...(SOCIAL_PROFILES.length > 0 ? { sameAs: SOCIAL_PROFILES } : {}),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': siteId,
+      url: `${SITE_URL}/${lang}`,
+      name: 'Entropic Defence',
+      inLanguage: lang,
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: meta.title,
+      description: meta.description,
+      inLanguage: lang,
+      isPartOf: { '@id': siteId },
+      about: { '@id': orgId },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Entropic Defence',
+          item: `${SITE_URL}/${lang}`,
+        },
+        ...(pagePath === '/'
+          ? []
+          : [{ '@type': 'ListItem', position: 2, name: meta.title, item: pageUrl }]),
+      ],
+    },
+  ]
+
+  if (key === 'support') {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      inLanguage: lang,
+      mainEntity: dict.support.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    })
+  }
+
+  // `<` escapas så att innehållet aldrig kan stänga <script>-taggen.
+  return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll(
+    '<',
+    '\\u003c',
+  )
+}
