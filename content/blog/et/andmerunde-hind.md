@@ -1,6 +1,6 @@
 ---
 key: cost-of-breach
-title: Mida andmeründe maksab väikesele ettevõttele – ja kuhu kulud kogunevad
+title: Kui palju andmeründe maksab väikesele ettevõttele – ja kuhu kulud kogunevad
 description: Seisakuaeg, uurimine, kaotatud kliendid ja regulatiivsed nõuded. Ülevaade sellest, kuhu raha tegelikult kaob väikese või keskmise ettevõtte andmeründes.
 date: 2026-10-16
 tags: andmeründe, intsidendi kulu, ärisrisk, intsidendi käsitlemine

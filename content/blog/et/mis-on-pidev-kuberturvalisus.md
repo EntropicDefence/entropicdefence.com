@@ -22,7 +22,7 @@ Pidev kuberturvalisus on selle vastand: pidev tööviis, kus te mõõdate, seate
 
 **1. Vara kaardistamine.** Te ei saa kaitsta seda, mida te ei tea endal olevat. Domeenid, alamdomeenid, avalikud API-d, pilvekontod, SaaS-teenused ja töötajate seadmed peavad olema elavas nimekirjas – mitte tabelis, mida uuendati eelmisel aastal.
 
-**2. Haavatavuste seire.** Tuntud haavatavused (CVE-d) tuleb siduda teie tegeliku tehnilise keskkonnaga, arvestades, kas haavatavust kasutatakse praktikas ja kas vara on väljastpoolt kättesaadav. Kõrge CVSS-skoor sisemisel testsververil ei ole sama asi kui keskmine haavatavus teie avalikus sisselogimises.
+**2. Haavatavuste seire.** Tuntud haavatavused (CVE-d) tuleb siduda teie tegeliku tehnilise keskkonnaga, arvestades, kas haavatavust kasutatakse praktikas ja kas vara on väljastpoolt kättesaadav. Kõrge CVSS-skoor sisemisel testserveril ei ole sama asi kui keskmine haavatavus teie avalikus sisselogimises.
 
 **3. Tuvastus ja häired.** Logid, mida keegi ei loe, on kulu, mitte kontrollimeede. Vaja on väheseid häireid, millel on tegelik tähendus: uus administraatori sisselogimine, andmete massiline väljavõtt, muutunud õigused, liiklus teadaolevatesse pahatahtlikesse aadressidesse.
 
