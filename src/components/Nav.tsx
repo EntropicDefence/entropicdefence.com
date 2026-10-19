@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import Button from '@/components/Button'
 import { LANGUAGES, useI18n } from '@/i18n'
+import { blogUi } from '@/blog/ui'
 
 function LanguagePicker({ onSelect }: { onSelect?: () => void }) {
   const { t, lang, setLang } = useI18n()
@@ -89,6 +90,7 @@ export default function Nav() {
     { to: to('/#tjanster'), label: t.nav.services },
     { to: to('/disclosures'), label: t.nav.disclosures },
     { to: to('/papers'), label: t.nav.papers },
+    { to: to('/blog'), label: blogUi[lang].navLabel },
     { to: to('/support'), label: t.nav.support },
   ]
 

@@ -10,6 +10,11 @@ import {
   type LanguageCode,
 } from './i18n'
 
+import { getPost, getPostTranslations, getPosts } from './blog/posts'
+import { blogUi } from './blog/ui'
+
+export { getPostTranslations as getBlogTranslations, getPosts as getBlogPosts }
+
 /**
  * SSR-ingång för prerendering. Renderar hela appen till statisk HTML för en
  * given URL. `LanguageProvider` läser språket ur URL:en (`/sv/papers` → sv),
@@ -49,6 +54,19 @@ const META_KEYS: Record<string, keyof (typeof translations)['sv']['meta']> = {
 export function getPageMeta(url: string): { title: string; description: string; lang: LanguageCode } {
   const lang = languageFromPath(url) ?? DEFAULT_LANGUAGE
   const pagePath = stripLanguagePrefix(url)
+
+  if (pagePath === '/blog') {
+    const ui = blogUi[lang]
+    return { title: `${ui.title} — Entropic Defence`, description: ui.lead, lang }
+  }
+
+  if (pagePath.startsWith('/blog/')) {
+    const post = getPost(lang, pagePath.slice('/blog/'.length))
+    if (post) {
+      return { title: `${post.title} — Entropic Defence`, description: post.description, lang }
+    }
+  }
+
   const key = META_KEYS[pagePath] ?? 'notFound'
   const meta = translations[lang].meta[key]
   return { title: meta.title, description: meta.description, lang }
@@ -108,7 +126,9 @@ export function getStructuredData(url: string): string {
   const pagePath = stripLanguagePrefix(url)
   const key = META_KEYS[pagePath] ?? 'notFound'
   const dict = translations[lang]
-  const meta = dict.meta[key]
+  const meta = getPageMeta(url)
+  const slug = pagePath.startsWith('/blog/') ? pagePath.slice('/blog/'.length) : undefined
+  const post = slug ? getPost(lang, slug) : undefined
   const pageUrl = `${SITE_URL}${url}`
   const orgId = `${SITE_URL}/#organization`
   const siteId = `${SITE_URL}/#website`
@@ -163,10 +183,76 @@ export function getStructuredData(url: string): string {
         },
         ...(pagePath === '/'
           ? []
-          : [{ '@type': 'ListItem', position: 2, name: meta.title, item: pageUrl }]),
+          : pagePath === '/blog'
+            ? [
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: blogUi[lang].navLabel,
+                  item: pageUrl,
+                },
+              ]
+            : post
+              ? [
+                  {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: blogUi[lang].navLabel,
+                    item: `${SITE_URL}/${lang}/blog`,
+                  },
+                  { '@type': 'ListItem', position: 3, name: post.title, item: pageUrl },
+                ]
+              : [{ '@type': 'ListItem', position: 2, name: meta.title, item: pageUrl }]),
       ],
     },
   ]
+
+  if (post) {
+    graph.push({
+      '@type': 'BlogPosting',
+      '@id': `${pageUrl}#article`,
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.updated ?? post.date,
+      inLanguage: lang,
+      author: { '@id': orgId },
+      publisher: { '@id': orgId },
+      image: `${SITE_URL}/og-image.png`,
+      mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+      ...(post.tags.length > 0 ? { keywords: post.tags.join(', ') } : {}),
+    })
+    graph.push({
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/${lang}/blog#blog`,
+      url: `${SITE_URL}/${lang}/blog`,
+      name: blogUi[lang].title,
+      inLanguage: lang,
+      publisher: { '@id': orgId },
+      blogPost: getPosts(lang).map((entry) => ({
+        '@type': 'BlogPosting',
+        headline: entry.title,
+        url: `${SITE_URL}/${lang}/blog/${entry.slug}`,
+        datePublished: entry.date,
+      })),
+    })
+  } else if (pagePath === '/blog') {
+    graph.push({
+      '@type': 'Blog',
+      '@id': `${pageUrl}#blog`,
+      url: pageUrl,
+      name: meta.title,
+      description: meta.description,
+      inLanguage: lang,
+      publisher: { '@id': orgId },
+      blogPost: getPosts(lang).map((entry) => ({
+        '@type': 'BlogPosting',
+        headline: entry.title,
+        url: `${SITE_URL}/${lang}/blog/${entry.slug}`,
+        datePublished: entry.date,
+      })),
+    })
+  }
 
   if (key === 'support') {
     graph.push({

@@ -21,6 +21,7 @@ const ROUTES = [
   '/checkout/ledning',
   '/success',
   '/papers',
+  '/blog',
   '/legal',
   '/support',
   '/advisories',
@@ -40,16 +41,15 @@ function pageUrl(lang, route) {
   return route === '' ? `/${lang}` : `/${lang}${route}`
 }
 
-function hreflangLinks(lang, route) {
-  const links = LANGS.map(
-    (code) =>
-      `<link rel="alternate" hreflang="${code}" href="${SITE}${pageUrl(code, route)}" />`,
-  ).join('\n    ')
-  const xDefault = `<link rel="alternate" hreflang="x-default" href="${SITE}${pageUrl('en', route)}" />`
-  return `${links}\n    ${xDefault}`
+function hreflangLinks(alternates) {
+  const links = alternates
+    .map((entry) => `<link rel="alternate" hreflang="${entry.lang}" href="${SITE}${entry.url}" />`)
+    .join('\n    ')
+  const fallback = alternates.find((entry) => entry.lang === 'en') ?? alternates[0]
+  return `${links}\n    <link rel="alternate" hreflang="x-default" href="${SITE}${fallback.url}" />`
 }
 
-function buildPage(template, { url, lang, title, description, appHtml, locale, jsonLd }) {
+function buildPage(template, { url, lang, title, description, appHtml, locale, jsonLd, alternates }) {
   let html = template
   html = html.replace('<html lang="sv">', `<html lang="${lang}">`)
   html = html.replace(
@@ -88,7 +88,7 @@ function buildPage(template, { url, lang, title, description, appHtml, locale, j
     '<meta name="theme-color" content="#04060b" />',
     `<meta name="theme-color" content="#04060b" />
     <link rel="canonical" href="${SITE}${url}" />
-    ${hreflangLinks(lang, url === `/${lang}` ? '' : url.slice(lang.length + 1))}`,
+    ${hreflangLinks(alternates)}`,
   )
   html = html.replace(
     '</head>',
@@ -101,7 +101,7 @@ function buildPage(template, { url, lang, title, description, appHtml, locale, j
 
 async function main() {
   const server = await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)
-  const { render, getPageMeta, getStructuredData, OG_LOCALES } = server
+  const { render, getPageMeta, getStructuredData, OG_LOCALES, getBlogPosts, getBlogTranslations } = server
   const template = await readFile(path.join(distDir, 'index.html'), 'utf8')
 
   const sitemap = []
@@ -112,6 +112,7 @@ async function main() {
       const url = pageUrl(lang, route)
       const { title, description, lang: resolvedLang } = getPageMeta(url)
       const { html: appHtml } = render(url)
+      const alternates = LANGS.map((code) => ({ lang: code, url: pageUrl(code, route) }))
       const page = buildPage(template, {
         url,
         lang: resolvedLang,
@@ -120,6 +121,7 @@ async function main() {
         locale: OG_LOCALES[resolvedLang] ?? 'en_US',
         jsonLd: getStructuredData(url),
         appHtml,
+        alternates,
       })
 
       let outPath
@@ -143,6 +145,44 @@ async function main() {
     }
   }
 
+  // Blogginlägg — bara de språk där artikeln faktiskt finns. Saknad översättning
+  // genererar ingen fil, så länken kan aldrig peka på en tom sida.
+  let postsWritten = 0
+  for (const lang of LANGS) {
+    for (const post of getBlogPosts(lang)) {
+      const url = `/${lang}/blog/${post.slug}`
+      const { title, description } = getPageMeta(url)
+      const { html: appHtml } = render(url)
+      const alternates = getBlogTranslations(post.translationKey).map((entry) => ({
+        lang: entry.lang,
+        url: `/${entry.lang}/blog/${entry.slug}`,
+      }))
+      const page = buildPage(template, {
+        url,
+        lang,
+        title,
+        description,
+        locale: OG_LOCALES[lang] ?? 'en_US',
+        jsonLd: getStructuredData(url),
+        appHtml,
+        alternates,
+      })
+
+      const outPath = path.join(distDir, lang, 'blog', `${post.slug}.html`)
+      await mkdir(path.dirname(outPath), { recursive: true })
+      await writeFile(outPath, page)
+      postsWritten += 1
+
+      sitemap.push({
+        lang,
+        url,
+        lastmod: post.updated ?? post.date,
+        priority: '0.7',
+        changefreq: 'monthly',
+      })
+    }
+  }
+
   // 404 — engelsk notFound-sida (Vercel visar den när inget matchar)
   const { html: notFoundHtml } = render('/en/404')
   const { title, description } = getPageMeta('/en/404')
@@ -154,6 +194,7 @@ async function main() {
     locale: 'en_US',
     jsonLd: getStructuredData('/en/404'),
     appHtml: notFoundHtml,
+    alternates: [{ lang: 'en', url: '/en/404' }],
   })
   await writeFile(path.join(distDir, '404.html'), page404)
   written += 1
@@ -162,12 +203,12 @@ async function main() {
   const now = new Date().toISOString().slice(0, 10)
   const urls = sitemap
     .map(
-      ({ lang, url }) =>
+      ({ lang, url, lastmod, priority, changefreq }) =>
         `  <url>
     <loc>${SITE}${url}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${url === `/${lang}` ? '1.0' : '0.8'}</priority>
+    <lastmod>${lastmod ?? now}</lastmod>
+    <changefreq>${changefreq ?? 'weekly'}</changefreq>
+    <priority>${priority ?? (url === `/${lang}` ? '1.0' : '0.8')}</priority>
   </url>`,
     )
     .join('\n')
@@ -179,7 +220,9 @@ ${urls}
   await writeFile(path.join(distDir, 'sitemap.xml'), sitemapXml)
   written += 1
 
-  console.log(`prerender: ${written} filer skrivna (${LANGS.length} språk × ${ROUTES.length} rutter + 404 + sitemap)`)
+  console.log(
+    `prerender: ${written} filer skrivna (${LANGS.length} språk × ${ROUTES.length} rutter + ${postsWritten} blogginlägg + 404 + sitemap)`,
+  )
 }
 
 main().catch((error) => {

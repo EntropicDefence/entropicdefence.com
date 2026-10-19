@@ -11,6 +11,8 @@ import CheckoutIntern from '@/pages/CheckoutIntern'
 import CheckoutLedning from '@/pages/CheckoutLedning'
 import Success from '@/pages/Success'
 import Papers from '@/pages/Papers'
+import Blog from '@/pages/Blog'
+import BlogPost from '@/pages/BlogPost'
 import Legal from '@/pages/Legal'
 import Support from '@/pages/Support'
 import Advisories from '@/pages/Advisories'
@@ -18,6 +20,8 @@ import Disclosures from '@/pages/Disclosures'
 import Status from '@/pages/Status'
 import NotFound from '@/pages/NotFound'
 import { stripLanguagePrefix, useI18n } from '@/i18n'
+import { getPost } from '@/blog/posts'
+import { blogUi } from '@/blog/ui'
 
 function usePageEffects() {
   const { pathname, hash } = useLocation()
@@ -41,11 +45,16 @@ function usePageEffects() {
   }
 
   useEffect(() => {
-    const m = meta[pagePath] ?? meta['*']
+    const post = pagePath.startsWith('/blog/') ? getPost(lang, pagePath.slice('/blog/'.length)) : undefined
+    const m = post
+      ? { title: `${post.title} — Entropic Defence`, description: post.description }
+      : pagePath === '/blog'
+        ? { title: `${blogUi[lang].title} — Entropic Defence`, description: blogUi[lang].lead }
+        : (meta[pagePath] ?? meta['*'])
     document.title = m.title
     const tag = document.querySelector('meta[name="description"]')
     if (tag) tag.setAttribute('content', m.description)
-  }, [pagePath, lang])
+  }, [pagePath, lang, meta])
 
   useEffect(() => {
     if (hash) {
@@ -85,6 +94,8 @@ export default function App() {
             <Route path="checkout/ledning" element={<CheckoutLedning />} />
             <Route path="success" element={<Success />} />
             <Route path="papers" element={<Papers />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<BlogPost />} />
             <Route path="legal" element={<Legal />} />
             <Route path="support" element={<Support />} />
             <Route path="advisories" element={<Advisories />} />

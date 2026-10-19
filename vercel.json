@@ -12,6 +12,7 @@
     { "source": "/checkout/ledning", "destination": "/sv/checkout/ledning", "permanent": true },
     { "source": "/success", "destination": "/sv/success", "permanent": true },
     { "source": "/papers", "destination": "/sv/papers", "permanent": true },
+    { "source": "/blog", "destination": "/sv/blog", "permanent": true },
     { "source": "/legal", "destination": "/sv/legal", "permanent": true },
     { "source": "/support", "destination": "/sv/support", "permanent": true },
     { "source": "/advisories", "destination": "/sv/advisories", "permanent": true },
