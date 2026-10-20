@@ -1,0 +1,73 @@
+name: IndexNow ping
+
+# Efter varje push till main bygger Vercel om sajten. När den nya sitemapen är
+# live pingar vi IndexNow (Bing, Yandex, Seznam, Naver) med alla URL:er.
+# Google använder inte IndexNow — där gäller sitemap + Search Console.
+#
+# Kan också köras manuellt: Actions → "IndexNow ping" → Run workflow.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: indexnow-ping
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Vänta på att Vercel-deployen är live
+        run: |
+          set -euo pipefail
+          START=$(date +%s)
+          echo "Workflow startade: $(date -u)"
+
+          for i in $(seq 1 60); do
+            # cache-buster + no-cache så vi får sitemapen från origin, inte CDN-kopian
+            HEADERS=$(curl -sI -H 'Cache-Control: no-cache' \
+              "https://entropicdefence.com/sitemap.xml?cb=$(date +%s)" | tr -d '\r')
+            LM=$(printf '%s\n' "$HEADERS" | awk -F': ' 'tolower($1)=="last-modified"{print $2}')
+
+            if [ -n "${LM:-}" ]; then
+              TS=$(date -u -d "$LM" +%s)
+              if [ "$TS" -ge "$START" ]; then
+                echo "Ny deploy live: Last-Modified $LM"
+                exit 0
+              fi
+              echo "Väntar… sitemap är från $LM (försök $i/60)"
+            else
+              echo "Väntar… sitemap saknar Last-Modified (försök $i/60)"
+            fi
+            sleep 10
+          done
+
+          echo "::error::Sitemapen blev aldrig nyare än workflow-start — avbryter utan att pinga (vill inte skicka in gamla URL:er)."
+          exit 1
+
+      - name: Pinga IndexNow
+        run: |
+          set -euo pipefail
+          # 403 SiteVerificationNotCompleted kan komma precis efter deploy —
+          # försök igen några gånger innan vi ger upp.
+          for attempt in 1 2 3 4; do
+            echo "--- Försök $attempt"
+            if node scripts/indexnow.mjs; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then sleep 60; fi
+          done
+          echo "::error::IndexNow-pinget misslyckades efter 4 försök."
+          exit 1
