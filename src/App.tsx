@@ -4,6 +4,7 @@ import TimeField from '@/components/TimeField'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import FloatingCta from '@/components/FloatingCta'
+import CookieToast from '@/components/CookieToast'
 import Home from '@/pages/Home'
 import Checkout from '@/pages/Checkout'
 import CheckoutExtern from '@/pages/CheckoutExtern'
@@ -108,6 +109,7 @@ export default function App() {
 
       <Footer />
       <FloatingCta />
+      <CookieToast />
     </div>
   )
 }

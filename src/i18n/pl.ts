@@ -33,7 +33,7 @@ export const pl: Dictionary = {
       description: 'Otrzymaliśmy Państwa zapytanie. Konsultant skontaktuje się jak najszybciej.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Badania — Entropic Defence',
       description:
         'Raporty naukowe, hipotezy i eseje o AI, fizyce teoretycznej, filozofii i bezpieczeństwie.',
     },
@@ -51,7 +51,7 @@ export const pl: Dictionary = {
         'Skoordynowane zgłaszanie podatności. Znalazłeś podatność w naszych systemach? Traktujemy to poważnie.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Ujawnienia — Entropic Defence',
       description:
         'Nasza własna analiza AI, narzędzie Red Flag – Ethical hacker i to, co możemy otwarcie powiedzieć o zleceniach rządowych i systemach wojskowych.',
     },
@@ -102,8 +102,8 @@ export const pl: Dictionary = {
   nav: {
     services: 'Usługi',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Ujawnienia',
+    papers: 'Badania',
     support: 'Wsparcie',
     talkToConsultant: 'Porozmawiaj z konsultantem',
     homeAria: 'Entropic Defence — strona główna',
@@ -111,6 +111,10 @@ export const pl: Dictionary = {
     mobileMenu: 'Menu mobilne',
     closeMenu: 'Zamknij menu',
     openMenu: 'Otwórz menu',
+  },
+
+  cookie: {
+    noCookies: 'Pliki cookie nie są zapisywane. Nie śledzimy cię.',
   },
 
   // ── Stopka (Footer.tsx) ───────────────────────────────────────────────
@@ -121,7 +125,7 @@ export const pl: Dictionary = {
     columnCompany: 'Firma',
     linkServices: 'Usługi',
     linkReviews: 'Przeglądy',
-    linkPapers: 'Papers',
+    linkPapers: 'Badania',
     linkStatus: 'Status bezpieczeństwa',
     linkPackages: 'Wybierz pakiet',
     linkSupport: 'Wsparcie i FAQ',
@@ -646,7 +650,7 @@ export const pl: Dictionary = {
   // ── Papers ────────────────────────────────────────────────────────────
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Badania',
       titleLead: 'Myśli i badania ',
       titleHighlight: 'warte lektury',
       titleEnd: '.',
@@ -843,7 +847,7 @@ export const pl: Dictionary = {
   // ── Status bezpieczeństwa ─────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Ujawnienia',
       titleLead: 'To, co możemy ',
       titleHighlight: 'powiedzieć otwarcie',
       titleEnd: '.',

@@ -32,7 +32,7 @@ export const da: Dictionary = {
       description: 'Din forespørgsel er modtaget. En konsulent vender tilbage så hurtigt som muligt.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Forskning — Entropic Defence',
       description:
         'Videnskabelige rapporter, hypoteser og essays om kunstig intelligens, teoretisk fysik, filosofi og sikkerhed.',
     },
@@ -50,7 +50,7 @@ export const da: Dictionary = {
         'Koordineret sårbarhedsrapportering. Har du fundet en sårbarhed i vores systemer? Vi tager den alvorligt.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Offentliggørelser — Entropic Defence',
       description:
         'Vores proprietære AI-analyse, værktøjet Red Flag – Ethical hacker og det, vi åbent kan fortælle om regeringsopgaver og militære systemer.',
     },
@@ -100,8 +100,8 @@ export const da: Dictionary = {
   nav: {
     services: 'Ydelser',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Offentliggørelser',
+    papers: 'Forskning',
     support: 'Support',
     talkToConsultant: 'Tal med en konsulent',
     homeAria: 'Entropic Defence — forsiden',
@@ -111,6 +111,10 @@ export const da: Dictionary = {
     openMenu: 'Åbn menu',
   },
 
+  cookie: {
+    noCookies: 'Ingen cookies gemmes. Vi sporer dig ikke.',
+  },
+
   footer: {
     tagline:
       'Kontinuerlig sikkerhed mod udenlandske aktører. Over 40 år på verdens højeste sikkerhedsniveau — til virksomheder, myndigheder og kritisk infrastruktur.',
@@ -118,7 +122,7 @@ export const da: Dictionary = {
     columnCompany: 'Virksomhed',
     linkServices: 'Ydelser',
     linkReviews: 'Gennemgange',
-    linkPapers: 'Papers',
+    linkPapers: 'Forskning',
     linkStatus: 'Sikkerhedsstatus',
     linkPackages: 'Vælg pakke',
     linkSupport: 'Support & FAQ',
@@ -605,7 +609,7 @@ export const da: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Forskning',
       titleLead: 'Tanker og forskning, der er ',
       titleHighlight: 'værd at læse',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const da: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Offentliggørelser',
       titleLead: 'Det vi kan ',
       titleHighlight: 'fortælle åbent',
       titleEnd: '.',

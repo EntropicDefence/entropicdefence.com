@@ -32,7 +32,7 @@ export const en: Dictionary = {
       description: 'We have received your request. A consultant will get back to you shortly.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Research — Entropic Defence',
       description:
         'Research papers, hypotheses and essays on AI, theoretical physics, philosophy and security.',
     },
@@ -102,7 +102,7 @@ export const en: Dictionary = {
     services: 'Services',
     advisories: 'Advisories',
     disclosures: 'Disclosures',
-    papers: 'Papers',
+    papers: 'Research',
     support: 'Support',
     talkToConsultant: 'Talk to a consultant',
     homeAria: 'Entropic Defence — home page',
@@ -112,6 +112,10 @@ export const en: Dictionary = {
     openMenu: 'Open menu',
   },
 
+  cookie: {
+    noCookies: "No cookies are stored. We don't track you.",
+  },
+
   footer: {
     tagline:
       'Continuous security against foreign actors. 40+ years at the world’s highest security classification — for companies, government agencies and critical infrastructure.',
@@ -119,7 +123,7 @@ export const en: Dictionary = {
     columnCompany: 'Company',
     linkServices: 'Services',
     linkReviews: 'Reviews',
-    linkPapers: 'Papers',
+    linkPapers: 'Research',
     linkStatus: 'Security status',
     linkPackages: 'Choose a package',
     linkSupport: 'Support & FAQ',
@@ -621,7 +625,7 @@ export const en: Dictionary = {
   // ── Papers ───────────────────────────────────────────────────────────
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Research',
       titleLead: 'Thoughts and research ',
       titleHighlight: 'worth reading',
       titleEnd: '.',

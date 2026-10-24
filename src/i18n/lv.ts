@@ -32,7 +32,7 @@ export const lv: Dictionary = {
       description: 'Jūsu pieprasījums ir saņemts. Konsultants atbildēs, tiklīdz vien iespējams.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Pētījumi — Entropic Defence',
       description:
         'Zinātniski ziņojumi, hipotēzes un esejas par mākslīgo intelektu, teorētisko fiziku, filozofiju un drošību.',
     },
@@ -50,7 +50,7 @@ export const lv: Dictionary = {
         'Koordinēta ievainojamību atklāšana. Atradāt vājumu mūsu sistēmās? Mēs to uztveram nopietni.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Paziņojumi — Entropic Defence',
       description:
         'Mūsu pašu AI analīze, rīks “Red Flag – Ethical hacker” un tas, ko atklāti varam pastāstīt par valdības uzdevumiem un militārajām sistēmām.',
     },
@@ -100,8 +100,8 @@ export const lv: Dictionary = {
   nav: {
     services: 'Pakalpojumi',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Paziņojumi',
+    papers: 'Pētījumi',
     support: 'Atbalsts',
     talkToConsultant: 'Runājiet ar konsultantu',
     homeAria: 'Entropic Defence — sākumlapa',
@@ -111,6 +111,10 @@ export const lv: Dictionary = {
     openMenu: 'Atvērt izvēlni',
   },
 
+  cookie: {
+    noCookies: 'Sīkdatnes netiek saglabātas. Mēs jūs neizsekojam.',
+  },
+
   footer: {
     tagline:
       'Nepārtraukta drošība pret ārvalstu dalībniekiem. Vairāk nekā 40 gadi pasaules augstākajā līmenī — uzņēmumiem, iestādēm un kritiskajai infrastruktūrai.',
@@ -118,7 +122,7 @@ export const lv: Dictionary = {
     columnCompany: 'Uzņēmums',
     linkServices: 'Pakalpojumi',
     linkReviews: 'Pārskati',
-    linkPapers: 'Papers',
+    linkPapers: 'Pētījumi',
     linkStatus: 'Drošības statuss',
     linkPackages: 'Izvēlieties pakotni',
     linkSupport: 'Atbalsts un BUJ',
@@ -605,7 +609,7 @@ export const lv: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Pētījumi',
       titleLead: 'Domas un pētījumi, ko ',
       titleHighlight: 'vērts lasīt',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const lv: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Paziņojumi',
       titleLead: 'Tas, ko varam ',
       titleHighlight: 'pastāstīt atklāti',
       titleEnd: '.',

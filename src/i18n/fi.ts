@@ -32,7 +32,7 @@ export const fi: Dictionary = {
       description: 'Pyyntönne on vastaanotettu. Konsultti vastaa mahdollisimman pian.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Tutkimus — Entropic Defence',
       description:
         'Tieteellisiä raportteja, hypoteeseja ja esseitä tekoälystä, teoreettisesta fysiikasta, filosofiasta ja turvallisuudesta.',
     },
@@ -50,7 +50,7 @@ export const fi: Dictionary = {
         'Koordinoitu haavoittuvuusraportointi. Löysitkö haavoittuvuuden järjestelmistämme? Otamme sen vakavasti.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Julkistukset — Entropic Defence',
       description:
         'Oma tekoälyanalyysimme, Red Flag – Ethical hacker -työkalu sekä se, mitä voimme kertoa avoimesti valtionhallinnon toimeksiannoista ja sotilasjärjestelmistä.',
     },
@@ -100,8 +100,8 @@ export const fi: Dictionary = {
   nav: {
     services: 'Palvelut',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Julkistukset',
+    papers: 'Tutkimus',
     support: 'Tuki',
     talkToConsultant: 'Keskustele konsultin kanssa',
     homeAria: 'Entropic Defence — etusivu',
@@ -111,6 +111,10 @@ export const fi: Dictionary = {
     openMenu: 'Avaa valikko',
   },
 
+  cookie: {
+    noCookies: 'Evästeitä ei tallenneta. Emme seuraa sinua.',
+  },
+
   footer: {
     tagline:
       'Jatkuva turvallisuus ulkomaisia toimijoita vastaan. Yli 40 vuotta maailman korkeimmalla turvaluokituksella — yrityksille, viranomaisille ja kriittiselle infrastruktuurille.',
@@ -118,7 +122,7 @@ export const fi: Dictionary = {
     columnCompany: 'Yritys',
     linkServices: 'Palvelut',
     linkReviews: 'Tarkastukset',
-    linkPapers: 'Papers',
+    linkPapers: 'Tutkimus',
     linkStatus: 'Turvallisuustilanne',
     linkPackages: 'Valitse paketti',
     linkSupport: 'Tuki & UKK',
@@ -605,7 +609,7 @@ export const fi: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Tutkimus',
       titleLead: 'Ajatuksia ja tutkimusta, jotka ',
       titleHighlight: 'kannattaa lukea',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const fi: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Julkistukset',
       titleLead: 'Se mitä voimme ',
       titleHighlight: 'kertoa avoimesti',
       titleEnd: '.',

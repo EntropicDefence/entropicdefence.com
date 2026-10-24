@@ -32,7 +32,7 @@ export const es: Dictionary = {
       description: 'Su solicitud ha sido recibida. Un consultor le responderá lo antes posible.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Investigación — Entropic Defence',
       description:
         'Informes científicos, hipótesis y ensayos sobre inteligencia artificial, física teórica, filosofía y seguridad.',
     },
@@ -50,7 +50,7 @@ export const es: Dictionary = {
         'Divulgación coordinada de vulnerabilidades. ¿Encontró una debilidad en nuestros sistemas? Nos lo tomamos en serio.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Divulgaciones — Entropic Defence',
       description:
         'Nuestro análisis de IA propio, la herramienta Red Flag – Ethical hacker y lo que podemos contar abiertamente sobre encargos gubernamentales y sistemas militares.',
     },
@@ -100,8 +100,8 @@ export const es: Dictionary = {
   nav: {
     services: 'Servicios',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Divulgaciones',
+    papers: 'Investigación',
     support: 'Soporte',
     talkToConsultant: 'Hablar con un consultor',
     homeAria: 'Entropic Defence — página de inicio',
@@ -111,6 +111,10 @@ export const es: Dictionary = {
     openMenu: 'Abrir menú',
   },
 
+  cookie: {
+    noCookies: 'No se guardan cookies. No te rastreamos.',
+  },
+
   footer: {
     tagline:
       'Seguridad continua contra actores extranjeros. Más de 40 años al más alto nivel mundial — para empresas, autoridades e infraestructuras críticas.',
@@ -118,7 +122,7 @@ export const es: Dictionary = {
     columnCompany: 'Empresa',
     linkServices: 'Servicios',
     linkReviews: 'Revisiones',
-    linkPapers: 'Papers',
+    linkPapers: 'Investigación',
     linkStatus: 'Estado de seguridad',
     linkPackages: 'Elegir paquete',
     linkSupport: 'Soporte y FAQ',
@@ -605,7 +609,7 @@ export const es: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Investigación',
       titleLead: 'Ideas e investigaciones que ',
       titleHighlight: 'merecen leerse',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const es: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Divulgaciones',
       titleLead: 'Lo que podemos ',
       titleHighlight: 'contar abiertamente',
       titleEnd: '.',

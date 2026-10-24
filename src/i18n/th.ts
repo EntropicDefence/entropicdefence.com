@@ -32,7 +32,7 @@ export const th: Dictionary = {
       description: 'ได้รับคำขอของท่านแล้ว ที่ปรึกษาจะตอบกลับโดยเร็วที่สุด',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'งานวิจัย — Entropic Defence',
       description:
         'รายงานเชิงวิทยาศาสตร์ สมมติฐาน และบทความเกี่ยวกับปัญญาประดิษฐ์ ฟิสิกส์ทฤษฎี ปรัชญา และความปลอดภัย',
     },
@@ -50,7 +50,7 @@ export const th: Dictionary = {
         'การเปิดเผยช่องโหว่แบบประสานงาน พบจุดอ่อนในระบบของเราหรือไม่ เราจริงจังกับเรื่องนี้',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'การเปิดเผยข้อมูล — Entropic Defence',
       description:
         'การวิเคราะห์ AI ที่เราพัฒนาเอง เครื่องมือ Red Flag – Ethical hacker และสิ่งที่เราเปิดเผยได้เกี่ยวกับงานภาครัฐและระบบทหาร',
     },
@@ -100,8 +100,8 @@ export const th: Dictionary = {
   nav: {
     services: 'บริการ',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'การเปิดเผยข้อมูล',
+    papers: 'งานวิจัย',
     support: 'ฝ่ายสนับสนุน',
     talkToConsultant: 'พูดคุยกับที่ปรึกษา',
     homeAria: 'Entropic Defence — หน้าแรก',
@@ -111,6 +111,10 @@ export const th: Dictionary = {
     openMenu: 'เปิดเมนู',
   },
 
+  cookie: {
+    noCookies: 'ไม่มีการบันทึกคุกกี้ เราไม่ติดตามคุณ',
+  },
+
   footer: {
     tagline:
       'ความปลอดภัยต่อเนื่องต่อผู้กระทำจากต่างชาติ กว่า 40 ปีในระดับสูงสุดของโลก — สำหรับองค์กร หน่วยงานรัฐ และโครงสร้างพื้นฐานสำคัญ',
@@ -118,7 +122,7 @@ export const th: Dictionary = {
     columnCompany: 'บริษัท',
     linkServices: 'บริการ',
     linkReviews: 'การตรวจสอบ',
-    linkPapers: 'Papers',
+    linkPapers: 'งานวิจัย',
     linkStatus: 'สถานะความปลอดภัย',
     linkPackages: 'เลือกแพ็กเกจ',
     linkSupport: 'ฝ่ายสนับสนุนและคำถามที่พบบ่อย',
@@ -605,7 +609,7 @@ export const th: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'งานวิจัย',
       titleLead: 'แนวคิดและงานวิจัยที่ ',
       titleHighlight: 'ควรค่าแก่การอ่าน',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const th: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'การเปิดเผยข้อมูล',
       titleLead: 'สิ่งที่เรา ',
       titleHighlight: 'เปิดเผยได้',
       titleEnd: '.',

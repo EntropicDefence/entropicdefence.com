@@ -36,7 +36,7 @@ export const sv = {
       description: 'Er förfrågan är mottagen. En konsult återkommer snarast.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Forskning — Entropic Defence',
       description:
         'Vetenskapliga rapporter, hypoteser och essäer om AI, teoretisk fysik, filosofi och säkerhet.',
     },
@@ -54,7 +54,7 @@ export const sv = {
         'Koordinerad sårbarhetsrapportering. Har du hittat en sårbarhet i våra system? Vi tar det på allvar.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Offentliggöranden — Entropic Defence',
       description:
         'Vår proprietära AI-analys, verktyget Red Flag – Ethical hacker och vad vi kan berätta öppet om regeringsuppdrag och militära system.',
     },
@@ -107,8 +107,8 @@ export const sv = {
   nav: {
     services: 'Tjänster',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Offentliggöranden',
+    papers: 'Forskning',
     support: 'Support',
     talkToConsultant: 'Prata med en konsult',
     homeAria: 'Entropic Defence — startsidan',
@@ -116,6 +116,10 @@ export const sv = {
     mobileMenu: 'Mobilmeny',
     closeMenu: 'Stäng meny',
     openMenu: 'Öppna meny',
+  },
+
+  cookie: {
+    noCookies: 'Inga cookies sparas. Vi följer dig inte.',
   },
 
   // ── Footer ──────────────────────────────────────────────────────────
@@ -126,7 +130,7 @@ export const sv = {
     columnCompany: 'Företag',
     linkServices: 'Tjänster',
     linkReviews: 'Granskningar',
-    linkPapers: 'Papers',
+    linkPapers: 'Forskning',
     linkStatus: 'Säkerhetsstatus',
     linkPackages: 'Välj paket',
     linkSupport: 'Support & FAQ',
@@ -623,7 +627,7 @@ export const sv = {
   // ── Papers ───────────────────────────────────────────────────────────
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Forskning',
       titleLead: 'Tankar och forskning ',
       titleHighlight: 'värda att läsa',
       titleEnd: '.',
@@ -819,7 +823,7 @@ export const sv = {
   // ── Säkerhetsstatus ──────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Offentliggöranden',
       titleLead: 'Det vi kan ',
       titleHighlight: 'berätta öppet',
       titleEnd: '.',

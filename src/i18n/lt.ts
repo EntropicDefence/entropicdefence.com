@@ -32,7 +32,7 @@ export const lt: Dictionary = {
       description: 'Jūsų užklausa gauta. Konsultantas atsakys kuo greičiau.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Tyrimai — Entropic Defence',
       description:
         'Mokslinės ataskaitos, hipotezės ir esė apie dirbtinį intelektą, teorinę fiziką, filosofiją ir saugumą.',
     },
@@ -50,7 +50,7 @@ export const lt: Dictionary = {
         'Koordinuotas pažeidžiamumų atskleidimas. Radote mūsų sistemų spragą? Mes į tai žiūrime rimtai.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Atskleidimai — Entropic Defence',
       description:
         'Mūsų patentuota AI analizė, įrankis „Red Flag – Ethical hacker“ ir tai, ką galime atvirai pasakyti apie vyriausybės užsakymus ir karines sistemas.',
     },
@@ -100,8 +100,8 @@ export const lt: Dictionary = {
   nav: {
     services: 'Paslaugos',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Atskleidimai',
+    papers: 'Tyrimai',
     support: 'Pagalba',
     talkToConsultant: 'Pakalbėkite su konsultantu',
     homeAria: 'Entropic Defence — pagrindinis puslapis',
@@ -111,6 +111,10 @@ export const lt: Dictionary = {
     openMenu: 'Atidaryti meniu',
   },
 
+  cookie: {
+    noCookies: 'Slapukai nesaugomi. Mes jūsų nesekame.',
+  },
+
   footer: {
     tagline:
       'Nuolatinė sauga nuo užsienio veikėjų. Daugiau nei 40 metų aukščiausiu pasauliniu lygiu — įmonėms, institucijoms ir ypatingos svarbos infrastruktūrai.',
@@ -118,7 +122,7 @@ export const lt: Dictionary = {
     columnCompany: 'Įmonė',
     linkServices: 'Paslaugos',
     linkReviews: 'Apžvalgos',
-    linkPapers: 'Papers',
+    linkPapers: 'Tyrimai',
     linkStatus: 'Saugumo būsena',
     linkPackages: 'Pasirinkite paketą',
     linkSupport: 'Pagalba ir DUK',
@@ -605,7 +609,7 @@ export const lt: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Tyrimai',
       titleLead: 'Mintys ir tyrimai, kuriuos ',
       titleHighlight: 'verta skaityti',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const lt: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Atskleidimai',
       titleLead: 'Tai, ką galime ',
       titleHighlight: 'pasakyti atvirai',
       titleEnd: '.',

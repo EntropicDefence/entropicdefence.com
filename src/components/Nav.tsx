@@ -91,7 +91,6 @@ export default function Nav() {
     { to: to('/disclosures'), label: t.nav.disclosures },
     { to: to('/papers'), label: t.nav.papers },
     { to: to('/blog'), label: blogUi[lang].navLabel },
-    { to: to('/support'), label: t.nav.support },
   ]
 
   const scrollToTarget = (target: string) => {

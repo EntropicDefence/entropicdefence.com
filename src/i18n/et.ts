@@ -32,7 +32,7 @@ export const et: Dictionary = {
       description: 'Teie päring on vastu võetud. Konsulent vastab esimesel võimalusel.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Uuringud — Entropic Defence',
       description:
         'Teaduslikud aruanded, hüpoteesid ja esseed tehisintellektist, teoreetilisest füüsikast, filosoofiast ja turbest.',
     },
@@ -50,7 +50,7 @@ export const et: Dictionary = {
         'Koordineeritud haavatavuste avalikustamine. Leidsite meie süsteemidest nõrkuse? Võtame seda tõsiselt.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Avalikustamised — Entropic Defence',
       description:
         'Meie oma AI-analüüs, tööriist Red Flag – Ethical hacker ja see, mida saame avalikult öelda valitsusasutuste tellimuste ning sõjaliste süsteemide kohta.',
     },
@@ -100,8 +100,8 @@ export const et: Dictionary = {
   nav: {
     services: 'Teenused',
     advisories: 'Advisories',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Avalikustamised',
+    papers: 'Uuringud',
     support: 'Tugi',
     talkToConsultant: 'Räägi konsulendiga',
     homeAria: 'Entropic Defence — avaleht',
@@ -111,6 +111,10 @@ export const et: Dictionary = {
     openMenu: 'Ava menüü',
   },
 
+  cookie: {
+    noCookies: 'Küpsiseid ei salvestata. Me ei jälgi sind.',
+  },
+
   footer: {
     tagline:
       'Pidev turve välisosalejate vastu. Üle 40 aasta maailma kõrgeimal tasemel — ettevõtetele, ametiasutustele ja elutähtsale taristule.',
@@ -118,7 +122,7 @@ export const et: Dictionary = {
     columnCompany: 'Ettevõte',
     linkServices: 'Teenused',
     linkReviews: 'Ülevaated',
-    linkPapers: 'Papers',
+    linkPapers: 'Uuringud',
     linkStatus: 'Turbeolek',
     linkPackages: 'Vali pakett',
     linkSupport: 'Tugi ja KKK',
@@ -605,7 +609,7 @@ export const et: Dictionary = {
 
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Uuringud',
       titleLead: 'Mõtted ja teadustöö, mida ',
       titleHighlight: 'tasub lugeda',
       titleEnd: '.',
@@ -797,7 +801,7 @@ export const et: Dictionary = {
   // ── Disclosures ──────────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Avalikustamised',
       titleLead: 'Mida me saame ',
       titleHighlight: 'avalikult öelda',
       titleEnd: '.',

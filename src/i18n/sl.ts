@@ -34,7 +34,7 @@ export const sl: Dictionary = {
       description: 'Vaše povpraševanje je prejeto. Svetovalec se bo oglasil v najkrajšem času.',
     },
     papers: {
-      title: 'Papers — Entropic Defence',
+      title: 'Raziskave — Entropic Defence',
       description:
         'Znanstvena poročila, hipoteze in eseji o umetni inteligenci, teoretični fiziki, filozofiji in varnosti.',
     },
@@ -52,7 +52,7 @@ export const sl: Dictionary = {
         'Usklajeno poročanje o ranljivostih. Ste našli ranljivost v naših sistemih? To jemljemo resno.',
     },
     disclosures: {
-      title: 'Disclosures — Entropic Defence',
+      title: 'Razkritja — Entropic Defence',
       description:
         'Naša lastna analiza AI, orodje Red Flag – Ethical hacker in tisto, kar lahko odkrito povemo o vladnih naročilih in vojaških sistemih.',
     },
@@ -105,8 +105,8 @@ export const sl: Dictionary = {
   nav: {
     services: 'Storitve',
     advisories: 'Obvestila',
-    disclosures: 'Disclosures',
-    papers: 'Papers',
+    disclosures: 'Razkritja',
+    papers: 'Raziskave',
     support: 'Podpora',
     talkToConsultant: 'Pogovor s svetovalcem',
     homeAria: 'Entropic Defence — domača stran',
@@ -114,6 +114,10 @@ export const sl: Dictionary = {
     mobileMenu: 'Mobilni meni',
     closeMenu: 'Zapri meni',
     openMenu: 'Odpri meni',
+  },
+
+  cookie: {
+    noCookies: 'Piškotki se ne shranjujejo. Ne sledimo vam.',
   },
 
   // ── Noga ─────────────────────────────────────────────────────────────
@@ -124,7 +128,7 @@ export const sl: Dictionary = {
     columnCompany: 'Podjetje',
     linkServices: 'Storitve',
     linkReviews: 'Pregledi',
-    linkPapers: 'Papers',
+    linkPapers: 'Raziskave',
     linkStatus: 'Varnostni status',
     linkPackages: 'Izberite paket',
     linkSupport: 'Podpora in pogosta vprašanja',
@@ -628,7 +632,7 @@ export const sl: Dictionary = {
   // ── Papers ───────────────────────────────────────────────────────────
   papers: {
     hero: {
-      eyebrow: 'Papers',
+      eyebrow: 'Raziskave',
       titleLead: 'Misli in raziskave, ',
       titleHighlight: 'vredne branja',
       titleEnd: '.',
@@ -829,7 +833,7 @@ export const sl: Dictionary = {
   // ── Varnostni status ─────────────────────────────────────────────────
   disclosures: {
     hero: {
-      eyebrow: 'Disclosures',
+      eyebrow: 'Razkritja',
       titleLead: 'To, kar lahko ',
       titleHighlight: 'povemo odkrito',
       titleEnd: '.',
