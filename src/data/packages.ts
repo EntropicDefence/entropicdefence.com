@@ -42,4 +42,14 @@ export const EXTERNAL_PLAN_IDS: ExternalPlanId[] = ['manad', 'vecka', 'dag']
 
 export const INTERNAL_RATE = 3500
 
+/** Startups & mindre företag — kvartalsvis penetrationstest. Pris per månad per faktureringsperiod. */
+export const SMALL_BUSINESS_PRICES: Record<BillingPeriod, number> = {
+  month: 6999,
+  quarter: 5999,
+  year: 4999,
+}
+
+/** Extra konsulttid utöver de 6 ingående timmarna per kvartal. */
+export const SMALL_BUSINESS_EXTRA_HOUR_RATE = 500
+
 export const INTERNAL_LEVEL_IDS: InternalLevelId[] = ['vanlig', 'hog', 'militar']

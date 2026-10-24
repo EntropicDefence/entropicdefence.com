@@ -14,7 +14,7 @@ export const sv = {
     checkout: {
       title: 'Välj paket — Entropic Defence',
       description:
-        'Fasta priser på kontinuerlig säkerhet: extern kontroll, intern revision och säkerhetsledning. Från 18 700 SEK per månad.',
+        'Fasta priser på kontinuerlig säkerhet: kvartalsvis penetrationstest för mindre företag, extern kontroll, intern revision och säkerhetsledning. Från 4 999 SEK per månad.',
     },
     checkoutExtern: {
       title: 'Kontinuerlig säkerhetskontroll — Entropic Defence',
@@ -317,6 +317,18 @@ export const sv = {
           'Utbildning av personal och styrelse',
           'Stöd vid incidenter',
           '24/7 säkerhetsexpert — kommer snart',
+        ],
+      },
+      {
+        name: 'Startups & mindre företag',
+        period: 'per månad · årsbetalning',
+        description:
+          'Kvartalsvis penetrationstest för startups och mindre företag — upp till 20 exponerade adresser. År 4 999 · kvartal 5 999 · månad 6 999 kr/mån.',
+        features: [
+          'Penetrationstest varje kvartal — 4 per år',
+          'Upp till 20 exponerade adresser',
+          'Rapport, remediering och Statusintyg',
+          '6 konsulttimmar per kvartal — extra tid 500 kr/t',
         ],
       },
     ],

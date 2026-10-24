@@ -4,13 +4,19 @@ import {
   Network,
   Radar,
   ShieldCheck,
+  Target,
   type LucideIcon,
 } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import Button from '@/components/Button'
 import Reveal from '@/components/Reveal'
 import QuoteForm, { type QuoteOption } from '@/components/QuoteForm'
-import { EXTERNAL_PRICES, INTERNAL_RATE, periodPrice } from '@/data/packages'
+import {
+  EXTERNAL_PRICES,
+  INTERNAL_RATE,
+  periodPrice,
+  SMALL_BUSINESS_PRICES,
+} from '@/data/packages'
 import { useI18n } from '@/i18n'
 
 type Category = {
@@ -20,7 +26,9 @@ type Category = {
   period: string
   description: string
   features: string[]
-  to: string
+  to?: string
+  href?: string
+  cta?: string
   featured?: boolean
   soon?: boolean
 }
@@ -64,11 +72,27 @@ export default function Checkout() {
     },
   ]
 
+  // 4:e kortet finns bara i ordböcker som översatts (sv först) — andra språk visar 3 kort.
+  const small = t.checkout.categories[3]
+  if (small) {
+    categories.push({
+      name: small.name,
+      icon: Target,
+      price: `${t.common.from} ${formatPrice(SMALL_BUSINESS_PRICES.year)}`,
+      period: small.period,
+      description: small.description,
+      features: small.features,
+      href: '#forfragan',
+      cta: t.forms.sendRequest,
+    })
+  }
+
   const options: QuoteOption[] = [
     { value: 'extern', label: t.checkout.options.external },
     { value: 'intern', label: t.checkout.options.internal },
     { value: 'ledning', label: t.checkout.options.leadership },
   ]
+  if (small) options.push({ value: 'mindre', label: small.name })
 
   return (
     <>
@@ -86,7 +110,7 @@ export default function Checkout() {
 
       {/* KATEGORIKORT */}
       <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-2">
           {categories.map((c, i) => (
             <Reveal key={c.name} delay={i * 100} className="h-full">
               <article
@@ -125,10 +149,11 @@ export default function Checkout() {
 
                 <Button
                   to={c.to}
+                  href={c.href}
                   variant={c.featured ? 'primary' : 'ghost'}
                   className="mt-8 w-full"
                 >
-                  {t.checkout.seePackages}
+                  {c.cta ?? t.checkout.seePackages}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </article>
