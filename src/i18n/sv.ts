@@ -267,8 +267,8 @@ export const sv = {
       ctaSupport: 'Våra paket',
     },
     papersCta: {
-      text: 'Nyfiken på hur vi tänker? Läs våra papers om AI, fysik och säkerhet.',
-      cta: 'Till Papers',
+      text: 'Nyfiken på hur vi tänker? Läs vår forskning om AI, fysik och säkerhet.',
+      cta: 'Till Forskning',
     },
   },
 
@@ -619,7 +619,7 @@ export const sv = {
     panelText:
       'Vill ni kommunicera känslig information redan nu? Be om vår PGP-nyckel i bekräftelsemailet — eller mejla oss direkt.',
     ctaHome: 'Tillbaka till startsidan',
-    ctaPapers: 'Läs våra papers',
+    ctaPapers: 'Läs vår forskning',
   },
 
   // ── Business Profile ─────────────────────────────────────────────────
@@ -671,7 +671,7 @@ export const sv = {
       },
     ],
     newsletter: {
-      title: 'Få nya papers direkt.',
+      title: 'Få ny forskning direkt.',
       text: 'Prenumerera på vårt nyhetsbrev — högst ett mejl i månaden, krypterat om du vill, och alltid avpublicerbart med ett klick.',
       emailLabel: 'E-postadress',
       emailPlaceholder: 'jobbmejl@foretag.se',

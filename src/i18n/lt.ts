@@ -256,8 +256,8 @@ export const lt: Dictionary = {
       ctaSupport: 'Mūsų paketai',
     },
     papersCta: {
-      text: 'Smalsu, kaip mąstome? Skaitykite mūsų papers apie DI, fiziką ir saugumą.',
-      cta: 'Į papers',
+      text: 'Įdomu, kaip mąstome? Skaitykite mūsų tyrimus apie DI, fiziką ir saugumą.',
+      cta: 'Į Tyrimus',
     },
   },
 
@@ -603,7 +603,7 @@ export const lt: Dictionary = {
     panelText:
       'Norite jau dabar kalbėti jautriomis temomis? Paprašykite mūsų PGP rakto patvirtinimo laiške — arba parašykite tiesiogiai.',
     ctaHome: 'Grįžti į pagrindinį',
-    ctaPapers: 'Skaitykite mūsų papers',
+    ctaPapers: 'Skaitykite mūsų tyrimus',
   },
 
 
@@ -653,7 +653,7 @@ export const lt: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Gaukite naujus papers tiesiogiai.',
+      title: 'Gaukite naujus tyrimus pirmieji.',
       text: 'Prenumeruokite naujienlaiškį — ne daugiau vieno laiško per mėnesį, jei norite, šifruotą, ir visada atsisakoma vienu paspaudimu.',
       emailLabel: 'El. pašto adresas',
       emailPlaceholder: 'darbopastas@imone.lt',

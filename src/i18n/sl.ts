@@ -272,8 +272,8 @@ export const sl: Dictionary = {
       ctaSupport: 'Naši paketi',
     },
     papersCta: {
-      text: 'Vas zanima, kako razmišljamo? Preberite naše članke o umetni inteligenci, fiziki in varnosti.',
-      cta: 'Na Papers',
+      text: 'Vas zanima, kako razmišljamo? Preberite naše raziskave o umetni inteligenci, fiziki in varnosti.',
+      cta: 'K Raziskavam',
     },
   },
 
@@ -624,7 +624,7 @@ export const sl: Dictionary = {
     panelText:
       'Želite zaupne informacije posredovati že zdaj? V potrditvenem e-sporočilu zaprosite za naš PGP ključ — ali nam pišite neposredno.',
     ctaHome: 'Nazaj na domačo stran',
-    ctaPapers: 'Preberite naše članke',
+    ctaPapers: 'Preberite naše raziskave',
   },
 
   // ── Business Profile ─────────────────────────────────────────────────
@@ -679,7 +679,7 @@ export const sl: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Novi članki naravnost k vam.',
+      title: 'Prejmite nove raziskave prvi.',
       text: 'Naročite se na naše e-novice — največ eno sporočilo na mesec, šifrirano po želji in vedno z odjavo v enem kliku.',
       emailLabel: 'E-naslov',
       emailPlaceholder: 'sluzbeni@podjetje.si',

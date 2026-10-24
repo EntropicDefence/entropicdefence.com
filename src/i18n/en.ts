@@ -265,8 +265,8 @@ export const en: Dictionary = {
       ctaSupport: 'Our packages',
     },
     papersCta: {
-      text: 'Curious how we think? Read our papers on AI, physics and security.',
-      cta: 'To Papers',
+      text: 'Curious how we think? Read our research on AI, physics and security.',
+      cta: 'To Research',
     },
   },
 
@@ -617,7 +617,7 @@ export const en: Dictionary = {
     panelText:
       'Want to share sensitive information already? Ask for our PGP key in the confirmation email — or email us directly.',
     ctaHome: 'Back to the home page',
-    ctaPapers: 'Read our papers',
+    ctaPapers: 'Read our research',
   },
 
   // ── Business Profile ─────────────────────────────────────────────────
@@ -672,7 +672,7 @@ export const en: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Get new papers first.',
+      title: 'Get new research first.',
       text: 'Subscribe to our newsletter — at most one email a month, encrypted if you prefer, and always one click to unsubscribe.',
       emailLabel: 'Email address',
       emailPlaceholder: 'work@company.com',

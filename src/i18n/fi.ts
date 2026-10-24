@@ -256,8 +256,8 @@ export const fi: Dictionary = {
       ctaSupport: 'Pakettimme',
     },
     papersCta: {
-      text: 'Kiinnostaako ajattelumme? Lue paperimme tekoälystä, fysiikasta ja turvallisuudesta.',
-      cta: 'Papereihin',
+      text: 'Kiinnostaako tapamme ajatella? Lue tutkimuksiamme tekoälystä, fysiikasta ja turvallisuudesta.',
+      cta: 'Tutkimukseen',
     },
   },
 
@@ -603,7 +603,7 @@ export const fi: Dictionary = {
     panelText:
       'Haluatteko viestiä arkaluonteisista asioista jo nyt? Pyytäkää PGP-avaintamme vahvistussähköpostissa — tai lähettäkää meille sähköpostia suoraan.',
     ctaHome: 'Takaisin etusivulle',
-    ctaPapers: 'Lue paperimme',
+    ctaPapers: 'Lue tutkimuksiamme',
   },
 
 
@@ -653,7 +653,7 @@ export const fi: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Saa uudet paperit suoraan.',
+      title: 'Saa uusi tutkimus ensimmäisenä.',
       text: 'Tilaa uutiskirjeemme — korkeintaan yksi sähköposti kuukaudessa, halutessasi salattuna, ja aina yhdellä klikkauksella peruttavissa.',
       emailLabel: 'Sähköpostiosoite',
       emailPlaceholder: 'tyosahkoposti@yritys.fi',

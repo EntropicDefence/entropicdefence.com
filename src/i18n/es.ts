@@ -256,8 +256,8 @@ export const es: Dictionary = {
       ctaSupport: 'Nuestros paquetes',
     },
     papersCta: {
-      text: '¿Le interesa nuestra forma de pensar? Lea nuestros papers sobre IA, física y seguridad.',
-      cta: 'A los papers',
+      text: '¿Le interesa nuestra forma de pensar? Lea nuestra investigación sobre IA, física y seguridad.',
+      cta: 'A la Investigación',
     },
   },
 
@@ -603,7 +603,7 @@ export const es: Dictionary = {
     panelText:
       '¿Quiere comunicarse ya sobre temas sensibles? Pida nuestra clave PGP en el correo de confirmación — o escríbanos directamente.',
     ctaHome: 'Volver al inicio',
-    ctaPapers: 'Leer nuestros papers',
+    ctaPapers: 'Lea nuestra investigación',
   },
 
 
@@ -653,7 +653,7 @@ export const es: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Reciba los nuevos papers directamente.',
+      title: 'Reciba las nuevas investigaciones primero.',
       text: 'Suscríbase a nuestro boletín — como máximo un correo al mes, cifrado si lo desea, y siempre cancelable con un clic.',
       emailLabel: 'Dirección de correo',
       emailPlaceholder: 'trabajo@empresa.es',

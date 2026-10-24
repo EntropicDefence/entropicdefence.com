@@ -256,8 +256,8 @@ export const et: Dictionary = {
       ctaSupport: 'Meie paketid',
     },
     papersCta: {
-      text: 'Huvitab meie mõtteviis? Loe meie paperseid AI-st, füüsikast ja turbest.',
-      cta: 'Papersiteni',
+      text: 'Huvitab meie mõtteviis? Loe meie uuringuid AI-st, füüsikast ja turbest.',
+      cta: 'Uuringute juurde',
     },
   },
 
@@ -603,7 +603,7 @@ export const et: Dictionary = {
     panelText:
       'Soovite juba praegu tundlikel teemadel suhelda? Küsige meie PGP-võtit kinnituskirjas — või kirjutage meile otse.',
     ctaHome: 'Tagasi avalehele',
-    ctaPapers: 'Loe meie paperseid',
+    ctaPapers: 'Loe meie uuringuid',
   },
 
 
@@ -653,7 +653,7 @@ export const et: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Saa uued papersid otse.',
+      title: 'Saa uued uuringud esimesena.',
       text: 'Telli meie uudiskiri — kõige rohkem üks meil kuus, soovi korral krüpteeritult, ja alati ühe klõpsuga loobutav.',
       emailLabel: 'Meiliaadress',
       emailPlaceholder: 'toomeil@ettevote.ee',

@@ -277,8 +277,8 @@ export const pl: Dictionary = {
     },
 
     papersCta: {
-      text: 'Ciekawi, jak myślimy? Przeczytajcie nasze papers o AI, fizyce i bezpieczeństwie.',
-      cta: 'Do Papers',
+      text: 'Ciekawi, jak myślimy? Przeczytaj nasze badania o AI, fizyce i bezpieczeństwie.',
+      cta: 'Do Badań',
     },
   },
 
@@ -642,7 +642,7 @@ export const pl: Dictionary = {
     panelText:
       'Chcą Państwo przekazać informacje wrażliwe już teraz? Poproście o nasz klucz PGP w e-mailu potwierdzającym — albo napiszcie do nas bezpośrednio.',
     ctaHome: 'Powrót na stronę główną',
-    ctaPapers: 'Przeczytajcie nasze papers',
+    ctaPapers: 'Przeczytaj nasze badania',
   },
 
   // ── Business Profile ──────────────────────────────────────────────────
@@ -694,7 +694,7 @@ export const pl: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Otrzymujcie nowe papers bezpośrednio.',
+      title: 'Otrzymuj nowe badania jako pierwszy.',
       text: 'Zapiszcie się do naszego newslettera — najwyżej jeden e-mail w miesiącu, na życzenie zaszyfrowany i zawsze z możliwością wypisania jednym kliknięciem.',
       emailLabel: 'Adres e-mail',
       emailPlaceholder: 'poczta@firma.pl',

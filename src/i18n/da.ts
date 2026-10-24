@@ -256,8 +256,8 @@ export const da: Dictionary = {
       ctaSupport: 'Vores pakker',
     },
     papersCta: {
-      text: 'Nysgerrig på vores tankegang? Læs vores papers om AI, fysik og sikkerhed.',
-      cta: 'Til papers',
+      text: 'Nysgerrig på vores tankegang? Læs vores forskning om AI, fysik og sikkerhed.',
+      cta: 'Til Forskning',
     },
   },
 
@@ -603,7 +603,7 @@ export const da: Dictionary = {
     panelText:
       'Vil du kommunikere om følsomme emner allerede nu? Bed om vores PGP-nøgle i bekræftelsesmailen — eller skriv til os direkte.',
     ctaHome: 'Tilbage til forsiden',
-    ctaPapers: 'Læs vores papers',
+    ctaPapers: 'Læs vores forskning',
   },
 
 
@@ -653,7 +653,7 @@ export const da: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Få nye papers direkte.',
+      title: 'Få ny forskning direkte.',
       text: 'Tilmeld dig vores nyhedsbrev — højst én mail om måneden, krypteret hvis du ønsker det, og altid afmeldt med ét klik.',
       emailLabel: 'Mailadresse',
       emailPlaceholder: 'arbejdsmail@virksomhed.dk',

@@ -256,8 +256,8 @@ export const no: Dictionary = {
       ctaSupport: 'Våre pakker',
     },
     papersCta: {
-      text: 'Nysgjerrig på tankegangen vår? Les papersene våre om AI, fysikk og sikkerhet.',
-      cta: 'Til papers',
+      text: 'Nysgjerrig på hvordan vi tenker? Les vår forskning om AI, fysikk og sikkerhet.',
+      cta: 'Til Forskning',
     },
   },
 
@@ -603,7 +603,7 @@ export const no: Dictionary = {
     panelText:
       'Vil du kommunisere om sensitive emner allerede nå? Be om PGP-nøkkelen vår i bekreftelsesmailen — eller send oss en e-post direkte.',
     ctaHome: 'Tilbake til startsiden',
-    ctaPapers: 'Les papersene våre',
+    ctaPapers: 'Les vår forskning',
   },
 
 
@@ -653,7 +653,7 @@ export const no: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Få nye papers direkte.',
+      title: 'Få ny forskning direkte.',
       text: 'Abonner på nyhetsbrevet vårt — maks én e-post i måneden, kryptert om du ønsker det, og alltid avmeldt med ett klikk.',
       emailLabel: 'E-postadresse',
       emailPlaceholder: 'jobb-epost@bedrift.no',

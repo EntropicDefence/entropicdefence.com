@@ -256,8 +256,8 @@ export const lv: Dictionary = {
       ctaSupport: 'Mūsu pakotnes',
     },
     papersCta: {
-      text: 'Interesē mūsu domāšanas veids? Lasiet mūsu papers par MI, fiziku un drošību.',
-      cta: 'Uz papers',
+      text: 'Interesē, kā mēs domājam? Lasiet mūsu pētījumus par MI, fiziku un drošību.',
+      cta: 'Uz Pētījumiem',
     },
   },
 
@@ -603,7 +603,7 @@ export const lv: Dictionary = {
     panelText:
       'Vēlaties jau tagad sazināties par sensitīviem jautājumiem? Lūdziet mūsu PGP atslēgu apstiprinājuma e-pastā — vai rakstiet mums tieši.',
     ctaHome: 'Atpakaļ uz sākumlapu',
-    ctaPapers: 'Lasiet mūsu papers',
+    ctaPapers: 'Lasiet mūsu pētījumus',
   },
 
 
@@ -653,7 +653,7 @@ export const lv: Dictionary = {
       },
     ],
     newsletter: {
-      title: 'Saņemiet jaunus papers tieši.',
+      title: 'Saņemiet jaunus pētījumus pirmais.',
       text: 'Pierakstieties mūsu biļetenam — ne vairāk kā viens e-pasts mēnesī, pēc izvēles šifrēts, un vienmēr ar vienu klikšķi atceļams.',
       emailLabel: 'E-pasta adrese',
       emailPlaceholder: 'darbs@uznemums.lv',
