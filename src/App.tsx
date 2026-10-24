@@ -55,6 +55,8 @@ function usePageEffects() {
     document.title = m.title
     const tag = document.querySelector('meta[name="description"]')
     if (tag) tag.setAttribute('content', m.description)
+    const robots = document.querySelector('meta[name="robots"]')
+    if (robots) robots.setAttribute('content', pagePath === '/papers' ? 'noindex, follow' : 'index, follow')
   }, [pagePath, lang, meta])
 
   useEffect(() => {

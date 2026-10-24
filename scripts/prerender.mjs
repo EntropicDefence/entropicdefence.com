@@ -49,7 +49,7 @@ function hreflangLinks(alternates) {
   return `${links}\n    <link rel="alternate" hreflang="x-default" href="${SITE}${fallback.url}" />`
 }
 
-function buildPage(template, { url, lang, title, description, appHtml, locale, jsonLd, alternates }) {
+function buildPage(template, { url, lang, title, description, appHtml, locale, jsonLd, alternates, robots = 'index, follow' }) {
   let html = template
   html = html.replace('<html lang="sv">', `<html lang="${lang}">`)
   html = html.replace(
@@ -59,6 +59,10 @@ function buildPage(template, { url, lang, title, description, appHtml, locale, j
   html = html.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/>/s,
     `<meta name="description" content="${escapeHtml(description)}" />`,
+  )
+  html = html.replace(
+    /<meta\s+name="robots"\s+content="[^"]*"\s*\/>/s,
+    `<meta name="robots" content="${robots}" />`,
   )
   html = html.replace(
     /<meta\s+property="og:title"\s+content="[^"]*"\s*\/>/s,
@@ -122,6 +126,7 @@ async function main() {
         jsonLd: getStructuredData(url),
         appHtml,
         alternates,
+        robots: route === '/papers' ? 'noindex, follow' : 'index, follow',
       })
 
       let outPath
@@ -141,7 +146,8 @@ async function main() {
         written += 1
       }
 
-      sitemap.push({ lang, url })
+      // Forskning är noindex tills vi har riktiga rapporter — ta bort ur sitemap
+      if (route !== '/papers') sitemap.push({ lang, url })
     }
   }
 
